@@ -31,6 +31,14 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <div class="edit-role-field">
+    <%= f.radio_button :role,"member" %>
+    <%= f.label :role,"一般用戶"%>
+    <%= f.radio_button :role, "admin" %>
+    <%= f.label :role, "管理員" %>
+  </div>
+  
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
