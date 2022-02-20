@@ -1,0 +1,20 @@
+<h1>課程列表</h1>
+<section class="course">
+      <% @courses.each do |course| %>
+       <div class="course-card">
+        <header class="course-card-title">
+          <p>課程名稱：<%= course.theme %></p>
+          <p>課程類型：<%= course.category %></p>
+          <p>課程價格：<%= course.price %></p>
+        </header>
+        <article class="course-card-info">
+          <p>課程介紹：<%= course.intro %></p>
+          <p>課程狀態：<%= course.shelf %></p>
+          <p>有效期間：<%= course.valid_date %>天</p>
+          <p>起始日期：<%= course.start_date %></p>
+          <p>結束日期：<%= course.end_date %></p>
+
+        </article>
+       </div>
+      <% end %>
+</section>
