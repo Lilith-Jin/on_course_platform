@@ -27,6 +27,7 @@
         <div>身份：<%= current_user.role %></div>
         <%= link_to "登出", destroy_user_session_path, method: :delete %>
         <%= link_to "編輯個人資料",edit_user_registration_path %>
+        <%= link_to "課程列表",courses_path %>
       <% end %>
     <% end %>
   </body>

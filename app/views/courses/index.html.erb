@@ -1,4 +1,5 @@
 <h1>課程列表</h1>
+<%= link_to "新增課程", new_course_path %>
 <section class="course">
       <% @courses.each do |course| %>
        <div class="course-card">
@@ -10,10 +11,11 @@
         <article class="course-card-info">
           <p>課程介紹：<%= course.intro %></p>
           <p>課程狀態：<%= course.shelf %></p>
-          <p>有效期間：<%= course.valid_date %>天</p>
-          <p>起始日期：<%= course.start_date %></p>
-          <p>結束日期：<%= course.end_date %></p>
-
+          <div>
+          <%= link_to "課程內容", course_path(course)%>
+          <%= link_to "編輯課程", edit_course_path(course)%>
+          <%= link_to "刪除課程", course_path(course), method: :delete %>
+          </div>
         </article>
        </div>
       <% end %>

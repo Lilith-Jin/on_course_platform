@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_course, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_course, only: %i[edit update destroy]
   def index
     @courses = Course.all
   end
@@ -36,17 +36,23 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @course.destroy(course_params)
+    @course.destroy
     redirect_to courses_path, notice: "刪除課程成功"
   end
 
   private 
 
   def set_course
-    @course = current_user.courses.find(params[:id])
+    # byebug
+    if current_user.courses.ids.include?(params[:id].to_i) 
+      @course = current_user.courses.find(params[:id])
+    else
+      redirect_to courses_path, notice: "你沒有此課程編輯權限"
+    end
   end
     
   def course_params
-    params.require(:course).permit(:theme, :price, :category, :shelf, :intro, :valid_date, :start_date)
+    # byebug
+    params.require(:courses).permit(:theme, :price, :category, :shelf, :intro, :valid_date, :start_date)
   end
 end
