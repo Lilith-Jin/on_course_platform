@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
+  before_action :check_role
   before_action :set_course, only: %i[edit update destroy]
   def index
     @courses = Course.all
@@ -43,7 +44,6 @@ class CoursesController < ApplicationController
   private 
 
   def set_course
-    # byebug
     if current_user.courses.ids.include?(params[:id].to_i) 
       @course = current_user.courses.find(params[:id])
     else
@@ -52,7 +52,12 @@ class CoursesController < ApplicationController
   end
     
   def course_params
-    # byebug
     params.require(:courses).permit(:theme, :price, :category, :shelf, :intro, :valid_date, :start_date)
+  end
+
+  def check_role
+    unless current_user.role == "admin"
+      redirect_to root_path, notice:"您非課程管理員，請先註冊成為課程管理員"
+    end
   end
 end
