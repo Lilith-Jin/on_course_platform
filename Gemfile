@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem "rolify"
+gem 'aasm', '~> 5.2'
 # gem 'cancancan', '~> 3.3'
 
 group :development, :test do

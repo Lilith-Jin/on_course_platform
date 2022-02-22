@@ -4,28 +4,37 @@
     <%= form.text_field :theme %>
   </div>
   <div class="course-detail">
-    <%= form.label :type, "課程類型" %>
-    <%= form.text_field :type %>
+    <%= form.label :category, "課程類型" %>
+    <%= form.select :category, Course.categories.keys.map{|c|c}%>
+    <%#= form.select :category %>
   </div>
   <div class="course-detail">
     <%= form.label :price, "價格" %>
     <%= form.number_field :price %>
+  </div>
+   <div class="course-detail">
+    <%= form.label :currency, "幣別" %>
+    <%= form.select :currency, Course.currencies.keys.map{|c|c} %>
   </div>
   <div class="course-detail">
     <%= form.label :intro, "課程描述" %>
     <%= form.text_area :intro %>
   </div>
   <div class="course-detail">
-    <%= form.label :shelf, "課程狀態" %>
-    <%= form.text_field :shelf %>
+    <%#= form.label :state, "課程狀態" %>
+    <%#= form.select :state, Course.states.keys.map{|c|c} %>
   </div>
   <div class="course-detail">
-    <%= form.label :valid_date, "課程期限" %>
-    <%= form.number_field :valid_date %>
+    <%= form.label :valid_date, "課程觀看期限" %>
+    <%= form.number_field :valid_date, min:1, max:30 %>
   </div>
   <div class="course-detail">
-    <%= form.label :start_date, "起始日期" %>
+    <%= form.label :start_date, "課程上架日期" %>
     <%= form.date_field :start_date %>
+  </div>
+  <div class="course-detail">
+    <%= form.label :period, "上架天數" %>
+    <%= form.number_field :period %>
   </div>
   <div class="course-detail-btn">
     <%= form.submit btn_label %>
