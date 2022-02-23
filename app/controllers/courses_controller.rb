@@ -22,7 +22,8 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = Course.find_by_url!(params[:url])
+    # course = Course.find_by(params[:url])
   end
 
   def edit
@@ -54,7 +55,7 @@ class CoursesController < ApplicationController
   end
     
   def course_params
-    new_params = params.require(:course).permit(:theme, :price, :category, :currency, :state, :intro, :valid_date, :start_date, :end_date)
+    new_params = params.require(:course).permit(:theme, :price, :category, :currency, :state, :intro, :valid_date, :start_date, :end_date, :url)
     new_params.merge(end_date: new_params.dig(:start_date).to_date + new_params.dig(:valid_date).to_i.days - 1.days)
     # byebug
    

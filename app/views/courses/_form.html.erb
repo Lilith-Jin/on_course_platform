@@ -36,6 +36,11 @@
     <%= form.label :period, "上架天數" %>
     <%= form.number_field :period %>
   </div>
+  <div class="course-detail">
+    <%= form.label :url, "自訂網址" %>
+    <%= form.text_field :url, required:true %>
+    <p class="help-block">限小寫英數字及橫線，將作為網址的一部分</p>
+  </div>
   <div class="course-detail-btn">
     <%= form.submit btn_label %>
   </div>
