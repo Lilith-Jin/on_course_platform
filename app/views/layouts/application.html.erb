@@ -13,21 +13,28 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
     <% unless user_signed_in? %>
       <%= link_to "註冊", new_user_registration_path %>
       <%= link_to "登入", new_user_session_path %>  
     <% end %> 
     <% if user_signed_in? %>
       <% if current_user.role == "member"%>
-      <div>身份：<%= current_user.role %></div>
+      <div>
+        身份：<%= current_user.role %>
+        信箱：<%= current_user.email %>
+      </div>
        <%= link_to "登出", destroy_user_session_path, method: :delete %>
        <%= link_to "編輯個人資料",edit_user_registration_path %>
       <% else %>
-        <div>身份：<%= current_user.role %></div>
+      <div>
+        身份：<%= current_user.role %>
+        信箱：<%= current_user.email %>
+      </div>
         <%= link_to "登出", destroy_user_session_path, method: :delete %>
         <%= link_to "編輯個人資料",edit_user_registration_path %>
+        <%= link_to "課程列表",courses_path %>
       <% end %>
     <% end %>
+    <%= yield %>
   </body>
 </html>

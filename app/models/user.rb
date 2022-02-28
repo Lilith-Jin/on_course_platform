@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # rolify
   enum role: {admin: 0, member: 1},_default: :member
+
+  has_many :courses
   # has_and_belongs_to_many :roles, :join_table => :users_roles
   # after_create :assign_defeat_role
 
